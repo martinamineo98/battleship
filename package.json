@@ -1,0 +1,32 @@
+{
+  "name": "battleship",
+  "version": "1.0.0",
+  "description": "Battleship Game",
+  "main": "battleship.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "jest --env=jsdom --watch --silent false -t battleship.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/martinamineo98/battleship.git"
+  },
+  "author": "Martina Mineo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/martinamineo98/battleship/issues"
+  },
+  "homepage": "https://github.com/martinamineo98/battleship#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.18.10",
+    "@babel/core": "^7.19.0",
+    "@babel/preset-env": "^7.19.0",
+    "babel-jest": "^29.0.2",
+    "css-loader": "^6.7.1",
+    "jest": "^29.0.2",
+    "jest-environment-jsdom": "^29.0.3",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  }
+}

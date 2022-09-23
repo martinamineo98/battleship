@@ -1,0 +1,132 @@
+
+/* -------------------------------------------------------- VARIABLES */
+
+:root {
+	--system-font-stack-sans-serif: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
+	--system-font-stack-serif: Iowan Old Style, Apple Garamond, Baskerville, Times New Roman, Droid Serif, Times, Source Serif Pro, serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+	--system-font-stack-monospace: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
+	
+	--main-font-family: var(--system-font-stack-sans-serif);
+}
+
+/* ------------------------------------------------------------ RESET */
+
+*,
+*::before,
+*::after {
+  border: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  font-size: 10px;
+}
+
+input,
+button,
+select {
+  font: inherit;
+}
+
+img,
+video {
+  height: auto;
+  max-width: 100%;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* ---------------------------------------------------------- GENERAL */
+
+body {
+	background-color: var(--body-background-color, #FFFFFF);
+	color: var(--main-text-color, #000000);
+	font: 1.4rem var(--main-font-family);
+}
+
+/* ---------------------------------------------------------- WRAPPER */
+
+.wrapper {
+	display: flex;
+	flex-direction: row;
+	height: 100vh;
+	margin: 0 auto;
+	place-content: center space-around;
+	place-items: center;
+	width: 900px;
+}
+
+/* ------------------------------------------------------------- GRID */
+
+.grid {
+	aspect-ratio: 1;
+	background-color: var(--grid-unactive-background-color, #FFFFFF);
+	display: grid;
+	gap: 3px;
+	grid-template-columns: repeat(10, 1fr);
+	grid-template-rows: repeat(10, 1fr);
+	position: relative;
+	width: calc(300px + (10 * 3px));
+}
+
+.grid.unactive::before {
+	background-color: var(--grid-unactive-background-color, hsla(0deg, 0%, 0%, 15%));
+	border-radius: 5px;
+	content: '';
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	z-index: 1;
+}
+
+.square {
+	background-color: var(--square-background-color, #EEEEEE);
+	border-radius: 5px;
+	display: flex;
+	place-content: center;
+	place-items: center;
+	position: relative;
+}
+
+.square:not(.unactive):hover {
+	cursor: pointer;
+	background-color: var(--square-hover-background-color, #DDDDDD);
+}
+
+.square::after,
+.square::before {
+	position: absolute;
+}
+
+.square[data-col='0']::before {
+	content: attr(data-row);
+	left: -20px;
+}
+
+.square[data-col='0'][data-row='0']::before {
+	text-shadow: 32px -27px black; /* Magic Number --> Randomly Found */
+}
+
+.square[data-row='0']:not([data-col='0'])::before {
+	content: attr(data-col);
+	top: -20px;
+}
+
+.square.attacked::after {
+	font-weight: bold;
+}
+
+.square.attacked:not(.missed)::after {
+	content: '\D7';
+	color: var(--square-attacked-missed-text-color, hsl(0deg, 50%, 50%));
+}
+
+.square.attacked.missed::after {
+	content: '\2022';
+}
